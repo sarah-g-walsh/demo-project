@@ -1,0 +1,9 @@
+{
+    "name": "homepage-backend",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "serverless-iam-roles-per-function": "^3.2.0",
+        "serverless-python-requirements": "^5.1.0"
+    }
+}

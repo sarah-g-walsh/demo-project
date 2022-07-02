@@ -1,0 +1,52 @@
+service: get-project-details
+plugins:
+  - serverless-python-requirements
+  - serverless-iam-roles-per-function
+custom:
+  appName: get-project-details
+  serviceName: get-project-details
+  pythonRequirements:
+    slim: true
+    useDownloadCache: false
+    useStaticCache: false
+    layer:
+      name: requirements-layer
+      description: "Python requirements lambda layer"
+      compatibleRuntimes:
+        - python3.7
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: python3.7
+  httpApi:
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedMethods:
+        - GET
+functions:
+  get-details:
+    handler: src/get_project_details.get_details
+    environment:
+      PROJECT_TABLE: project-details-table
+    package:
+      individually: true
+      include:
+        - src/*
+      exclude:
+        - ./**
+    memorySize: 128
+    events:
+      - httpApi:
+          path: /
+          method: get
+          cors: true
+    timeout: 10
+    iamRoleStatementsName: get-details-role
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Scan
+        Resource: arn:aws:dynamodb:eu-west-1:082862148481:table/project-details-table
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
