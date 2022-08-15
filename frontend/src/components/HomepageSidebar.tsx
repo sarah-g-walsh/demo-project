@@ -64,22 +64,6 @@ const HomepageSidebar: React.FC = (): React.ReactElement => {
             );
           })
         )}
-        {/* 
-          <SidebarButton
-            icon={ <Gamepad color="darkbrand"/> }
-            label="Noughts and Crosses"
-            sidebarurl={DUCK_URL}
-          />
-          <SidebarButton
-            icon={ <CheckboxSelected color="darkbrand"/> }
-            label="To-Do List"
-            sidebarurl={DUCK_URL}
-          />
-          <SidebarButton
-            icon={ <Calculator color="darkbrand"/> }
-            label="Calculator"
-            sidebarurl={DUCK_URL}
-          /> */}
       </Sidebar>
     </Box>
   );
