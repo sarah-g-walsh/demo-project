@@ -1,6 +1,7 @@
+// component that contains an image of project, and a label, and url to the project page
+
 import React from "react";
 import { Box, Card, CardBody, CardFooter, Text, Image } from "grommet";
-
 
 interface ProjectCardProps {
   image: string;
@@ -8,12 +9,15 @@ interface ProjectCardProps {
   url: string;
 }
 
-
-const ProjectCard: React.FC<ProjectCardProps> = ({image, label, url}): React.ReactElement => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  image,
+  label,
+  url,
+}): React.ReactElement => {
   return (
     <Box pad="medium">
       <Card
-        onClick={() => window.open(url, "_self")}
+        onClick={(): Window => window.open(url, "_self") as Window}
         height="medium"
         width="medium"
         background="white"
@@ -21,18 +25,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({image, label, url}): React.Rea
         hoverIndicator={{ elevation: "large" }}
       >
         <CardBody pad="medium">
-          <Image
-            fill={true}
-            src={image}
-          />
+          <Image fill={true} src={image} />
         </CardBody>
         <CardFooter
           pad={{ horizontal: "medium", vertical: "small" }}
           background="lightbackground"
         >
-            <Text size="medium">
-                {label}
-            </Text>
+          <Text size="medium">{label}</Text>
         </CardFooter>
       </Card>
     </Box>
